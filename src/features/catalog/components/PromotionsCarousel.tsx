@@ -4,10 +4,15 @@ import { ContainerCarousel } from '../style';
 
 interface PromotionsCarouselProps {
   title: string;
-  products: ProductProps[],
+  allProducts?: ProductProps[];
+  products: ProductProps[];
 }
 
-export default function PromotionsCarousel({ title, products }: PromotionsCarouselProps) {
+export default function PromotionsCarousel({
+  title,
+  products,
+}: PromotionsCarouselProps) {
+  
   const returnCarouselContent = () => {
     const productsOnSale = products.filter(
       product => product.category === `men's clothing`

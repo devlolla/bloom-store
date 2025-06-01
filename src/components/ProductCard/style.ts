@@ -66,7 +66,7 @@ export const Card = styled.div<CardProps>`
       font-size: ${({ layout }) => (layout === 'grid' ? '8px' : '12px')};
 
       display: -webkit-box;
-      -webkit-line-clamp: 3;
+      -webkit-line-clamp: ${({ layout }) => (layout === 'grid' ? '3' : '2')};
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;

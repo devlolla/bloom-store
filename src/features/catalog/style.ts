@@ -10,7 +10,6 @@ export const ContainerCarousel = styled.article`
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: 40px;
   background-color: #fff !important;
 
   .title {

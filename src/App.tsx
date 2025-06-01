@@ -1,14 +1,7 @@
-import { ToastContainer } from "react-toastify"
-import HomePage from "./pages/Home"
+import routes from "./routes"
 
 function App() {
-  return (
-    <>
-      <HomePage />
-      <ToastContainer stacked />
-
-    </>
-  )
+  return routes()
 }
 
 export default App
