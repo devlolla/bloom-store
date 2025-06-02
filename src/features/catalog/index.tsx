@@ -20,15 +20,13 @@ export default function CatalogComponent({
     }
   };
 
-
-
   return (
     <ContainerMain>
       {returnCarousel()}
       <ListingProducts 
         layout={layout} 
         filteredProducts={filteredProducts} 
-      />;
+      />
     </ContainerMain>
   );
 }

@@ -1,6 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
 
-const GlobalStyle = createGlobalStyle`
+import 'styled-components';
+
+interface GlobalStyleProps {
+  bgColor?: string;
+}
+
+const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
   /* Reset CSS */
   *, *::before, *::after {
     margin: 0;
@@ -13,7 +19,7 @@ const GlobalStyle = createGlobalStyle`
     font-family: "Roboto", sans-serif;
     line-height: 1.6;
     font-size: 100%;
-    background-color: #F2F3F8;
+    background-color: #fff;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

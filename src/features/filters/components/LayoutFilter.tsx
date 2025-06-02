@@ -1,6 +1,7 @@
 import { ContainerIcons } from '../styles';
-import type { LayoutFilterProps } from '../../../types/filters';
+
 import { optionsLayout } from '../../../utils/filterOptions';
+import type { LayoutFilterProps } from '../../../types';
 
 export default function LayoutFilter({ layout, setLayout }: LayoutFilterProps) {
   return (

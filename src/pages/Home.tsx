@@ -4,20 +4,29 @@ import CatalogComponent from '../features/catalog';
 import Filters from '../features/filters';
 import type { ProductProps } from '../types';
 import { getAllProducts } from '../services/productsApi';
+import Pagination from '../components/Pagination/Pagination';
+import paginatedProducts from '../utils/sliceProducts';
+import { applyDiscount } from '../utils/discount';
 
 export default function HomePage() {
   const [allProducts, setAllProducts] = useState<ProductProps[]>([]);
-  
+
   const [carouselProducts, setCarouselProducts] = useState<ProductProps[]>([]);
   const [filteredProducts, setFilteredProducts] = useState<ProductProps[]>([]);
 
   const [layout, setLayout] = useState<'grid' | 'listing'>('listing');
 
+  const [limit, setLimit] = useState<number>(5);
+  const [currentPage, setCurrentPage] = useState(1);
+
   const fetchProducts = async () => {
     try {
       const data = await getAllProducts();
-      setAllProducts(data);
-      setCarouselProducts(data);
+      
+      const discountApplied = applyDiscount(data, "men's clothing", 10)
+      
+      setAllProducts(discountApplied);
+      setCarouselProducts(discountApplied);
     } catch (err) {
       console.log('Erro ao buscar produtos');
     }
@@ -27,26 +36,36 @@ export default function HomePage() {
     fetchProducts();
   }, []);
 
-  // useEffect(() => {
-  //   console.log('allProducts:', allProducts);
-  // }, [allProducts])
-
   return (
     <>
-      <Header  
+      <Header
         allProducts={allProducts}
         setFilteredProducts={setFilteredProducts}
+        hideSearchInput={false}
       />
       <Filters
         layout={layout}
         setLayout={setLayout}
         allProducts={allProducts}
         setFilteredProducts={setFilteredProducts}
+        limit={limit}
+        setLimit={setLimit}
       />
       <CatalogComponent
         layout={layout}
-        filteredProducts={filteredProducts}
+        filteredProducts={paginatedProducts(
+          currentPage,
+          limit,
+          filteredProducts
+        )}
         carouselProducts={carouselProducts}
+      />
+      <Pagination
+        className="pagination-bar"
+        currentPage={currentPage}
+        totalCount={filteredProducts.length}
+        pageSize={limit}
+        onPageChange={page => setCurrentPage(page)}
       />
     </>
   );

@@ -11,6 +11,7 @@ export const ContainerCarousel = styled.article`
   display: flex;
   flex-direction: column;
   background-color: #fff !important;
+  box-shadow: 0px 4px 4px 0px #00000040;
 
   .title {
     font-size: 18px;
@@ -69,6 +70,7 @@ interface ContainerListingProps {
 export const ContainerListing = styled.div<ContainerListingProps>`
   display: flex;
   flex-direction: ${({ layout }) => (layout === 'listing' ? 'column' : 'row')};
+
   flex-wrap: ${({ layout }) => (layout === 'listing' ? 'unset' : 'wrap')};
   margin-top: 80px;
   width: 100%;
@@ -76,6 +78,7 @@ export const ContainerListing = styled.div<ContainerListingProps>`
   gap: ${({ layout }) => layout === 'grid' && '21px'};
   max-width: ${({ layout }) => (layout === 'listing' ? '1050px' : '100%')};
   margin: 60px auto;
+  margin-bottom: 30px;
 
   @media (max-width: 768px) {
     gap: ${({ layout }) => layout === 'grid' && '8px'};

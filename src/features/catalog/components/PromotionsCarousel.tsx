@@ -21,9 +21,11 @@ export default function PromotionsCarousel({
     return productsOnSale.map(item => (
       <CarouselCard
         key={item.id}
+        id={item.id}
         price={item.price}
         image={item.image}
         discountValue={10}
+        priceOriginal={item.priceOriginal}
       />
     ));
   };

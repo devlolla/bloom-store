@@ -11,10 +11,10 @@ type SelectProps = {
 export default function QuantityFilters({
   allProducts,
   setFilteredProducts,
+  limit,
+  setLimit
 
 }: QuantityFilterProps) {
-  const [limit, setLimit] = useState(5);
-
   const handleSliceProducts = (value: number) => {
     setLimit(value);
   };
@@ -23,15 +23,10 @@ export default function QuantityFilters({
     const productsOnSale = allProducts.filter(
       product => product.category !== `men's clothing`
     );
-    setFilteredProducts(productsOnSale.slice(0, limit));
-  }, [allProducts, limit]);
+    setFilteredProducts(productsOnSale);
+  }, [allProducts]);
 
-  useEffect(() => {
-    console.log(allProducts);
-    
-  }, [allProducts])
-
-  const returnSelectFilter = (options: SelectProps[]) => {
+   const returnSelectFilter = (options: SelectProps[]) => {
     return (
       <StyledSelect
         name="quantity-filter"

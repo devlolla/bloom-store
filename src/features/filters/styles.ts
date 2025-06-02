@@ -11,6 +11,8 @@ export const ContainerFilters = styled.div`
   gap: 11px;
 
   padding: 0 16px;
+
+  background-color: #f2f3f8;
 `;
 
 export const StyledSelect = styled.select`
@@ -25,7 +27,6 @@ export const StyledSelect = styled.select`
 
   &:focus {
     outline: none;
-    border-color: #2e7d32;
   }
 `;
 

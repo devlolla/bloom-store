@@ -8,4 +8,6 @@ export interface LayoutFilterProps {
 export interface QuantityFilterProps {
   allProducts: ProductProps[];
   setFilteredProducts: (filteredProducts: ProductProps[]) => void;
+  limit: number;
+  setLimit: (limit: number) => void;
 }

@@ -1,18 +1,32 @@
-import { brlFormatter } from "../../utils/currencyFormat"
-import { BuyInformation, CatalogBuyButton, ContainerCard, WrapperContent } from "./style"
-
+import { useNavigate } from 'react-router-dom';
+import { brlFormatter } from '../../utils/currencyFormat';
+import {
+  BuyInformation,
+  CatalogBuyButton,
+  ContainerCard,
+  WrapperContent,
+} from './style';
 
 type CardProps = {
-  image?: string,
-  price?: number,
-  discountValue?: number,
-}
+  id: number;
+  image: string;
+  priceOriginal: number;
+  price: number;
+  discountValue: number;
+};
 
-export default function CarouselCard ({
-  image, 
-  price, 
-  discountValue
+export default function CarouselCard({
+  id,
+  image,
+  priceOriginal,
+  price,
+  discountValue,
 }: CardProps) {
+  const navigate = useNavigate();
+
+  const handleBuyItem = (idProduct: number) => {
+    navigate(`/produto/${idProduct}`);
+  };
 
   return (
     <ContainerCard>
@@ -22,23 +36,24 @@ export default function CarouselCard ({
         </div>
         <BuyInformation>
           <div className="discount-tag">
-            <p>
-              {discountValue}% OFF
-            </p>
+            <p>{discountValue}% OFF</p>
           </div>
           <div className="price-area">
             <div className="price-item">
-              <strong>DE:</strong> <p>{brlFormatter.format(price ?? 0)}</p>
+              <strong>DE:</strong>{' '}
+              <p style={{ textDecoration: 'line-through' }}>
+                {brlFormatter.format(price)}
+              </p>
             </div>
             <div className="price-item">
-              <strong>POR:</strong> <p>{brlFormatter.format(price ?? 0)}</p>
+              <strong>POR:</strong> <p>{brlFormatter.format(priceOriginal)}</p>
             </div>
           </div>
         </BuyInformation>
       </WrapperContent>
-      <CatalogBuyButton>
+      <CatalogBuyButton onClick={() => handleBuyItem(id)}>
         COMPRAR
       </CatalogBuyButton>
     </ContainerCard>
-  )
+  );
 }

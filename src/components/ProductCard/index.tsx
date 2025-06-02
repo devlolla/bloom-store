@@ -1,4 +1,5 @@
 import type { ProductProps } from '../../types';
+import { useNavigate } from 'react-router-dom'
 import { brlFormatter } from '../../utils/currencyFormat';
 import { truncateText } from '../../utils/truncateText';
 import { BuyButton, BuyInformation, Card, Information, Wrapper } from './style';
@@ -10,6 +11,12 @@ type ProductCardProps = {
 };
 
 export default function ProductCard({ product, layout }: ProductCardProps) {
+  const navigate = useNavigate()
+
+  const handleBuyItem = (id: number) => {
+    navigate(`/produto/${id}`)
+  }
+
   return (
     <Card layout={layout}>
       <Wrapper layout={layout}>
@@ -36,7 +43,7 @@ export default function ProductCard({ product, layout }: ProductCardProps) {
           {truncateText(product.description, 160)}
         </div>
       )}
-      <BuyButton layout={layout}>
+      <BuyButton layout={layout} onClick={() => handleBuyItem(product.id)}>
         <FaCartShopping size={24} color="#fff" />
       </BuyButton>
     </Card>
