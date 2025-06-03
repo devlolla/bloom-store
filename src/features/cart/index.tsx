@@ -1,9 +1,16 @@
 import { useEffect } from 'react';
-import { ContainerCard, ContainerCart, Content, Total } from './style';
+import {
+  ContainerCard,
+  ContainerCart,
+  Content,
+  EmptyCart,
+  Total,
+} from './style';
 import { useCart } from '../../context/CartContext';
 import ProductCart from './components/ProductCart';
 import type { CartItem } from '../../types';
 import { brlFormatter } from '../../utils/currencyFormat';
+import { BsCartPlusFill } from "react-icons/bs";
 
 type CartComponentProps = {
   id?: number;
@@ -14,7 +21,10 @@ type CartComponentProps = {
   hideSearchInput: boolean;
 };
 
-export default function CartComponent({ visible, hideSearchInput }: CartComponentProps) {
+export default function CartComponent({
+  visible,
+  hideSearchInput,
+}: CartComponentProps) {
   const { cart, total, clearCart, totalItems, setVisibleCart } = useCart();
 
   useEffect(() => {
@@ -26,14 +36,31 @@ export default function CartComponent({ visible, hideSearchInput }: CartComponen
     }
   }, [visible]);
 
+  const returnContent = () => {
+    if (totalItems === 0) {
+      return (
+        <EmptyCart>
+          <div>
+            <BsCartPlusFill size={40} color="#0b1a8e" />
+            <strong> Seu carrinho está vazio </strong>
+          </div>
+        </EmptyCart>
+      );
+    }
+
+    if (totalItems > 0) {
+      return cart.map((productCart: CartItem) => (
+        <ProductCart {...productCart} quantity={productCart.quantity} />
+      ));
+    }
+  };
+
   return (
     <ContainerCart visible={visible} ajustHeight={hideSearchInput}>
       <Content>
         <ContainerCard>
           <h3 className="title">Carrinho</h3>
-          {cart.map((productCart: CartItem) => (
-            <ProductCart {...productCart} quantity={productCart.quantity} />
-          ))}
+          {returnContent()}
         </ContainerCard>
         <Total alignItems={!!totalItems}>
           {totalItems > 0 && (

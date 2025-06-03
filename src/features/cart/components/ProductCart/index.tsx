@@ -3,6 +3,7 @@ import type { CartItem } from '../../../../types';
 import { brlFormatter } from '../../../../utils/currencyFormat';
 import { ContainerProductCard, DiscountTag } from './style';
 import { useCart } from '../../../../context/CartContext';
+import { HiOutlineTrash } from 'react-icons/hi2';
 
 export default function ProductCart({
   id,
@@ -18,7 +19,7 @@ export default function ProductCart({
 
   const returnSectionPrice = (title: string, value: number) => {
     const isOriginalPrice = title === 'DE';
-    
+
     return (
       <div className="item">
         <strong>{title}:</strong>{' '}
@@ -50,9 +51,16 @@ export default function ProductCart({
 
   return (
     <ContainerProductCard>
-      <div className="box-image">
-        {category === `men's clothing` && <DiscountTag> 10% OFF</DiscountTag>}
-        <img src={image} alt="" />
+      <div className="align-wrapper">
+        <div className="box-image">
+          {category === `men's clothing` && <DiscountTag> 10% OFF</DiscountTag>}
+          <img src={image} alt="" />
+        </div>
+        <HiOutlineTrash
+          size={24}
+          color="#7A7A7A"
+          onClick={() => removeFromCart(id)}
+        />
       </div>
       <div className="column">
         <div className="box-title">

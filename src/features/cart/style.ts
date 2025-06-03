@@ -45,7 +45,7 @@ export const ContainerCard = styled.div`
   padding: 10px;
 
   overflow-y: scroll;
-
+  height: 100%;
   &::-webkit-scrollbar-track {
     background-color: #f4f4f4;
   }
@@ -93,5 +93,29 @@ export const Total = styled.div<TotalProps>`
     &:hover {
       background-color: #f2f3f8;
     }
+  }
+`;
+
+export const EmptyCart = styled.div`
+  height: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  div {
+    border: 1px solid rgb(59, 68, 143);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  strong {
+    font-size: 20px;
+    color: #0b1a8e;
   }
 `;

@@ -85,6 +85,16 @@ export const ContainerProductCard = styled.div`
       outline: none;
     }
   }
+
+  .align-wrapper {
+    display: flex;
+    flex-direction: column;
+
+    svg {
+      cursor: pointer;
+      margin-top: 10px;
+    }
+  }
 `;
 
 export const DiscountTag = styled.div`
