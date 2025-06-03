@@ -1,4 +1,5 @@
-import type { ProductProps } from '../../types';
+import { useCart } from '../../context/CartContext';
+import type { CartItem, ProductProps } from '../../types';
 import CardPrice from '../CardPrice';
 import RatingReadOnly from '../Rating';
 import {
@@ -12,7 +13,7 @@ import {
 } from './style';
 
 interface DetailsProps {
-  product: ProductProps;
+  product: CartItem;
 }
 
 export default function Details({ product }: DetailsProps) {
@@ -26,6 +27,8 @@ export default function Details({ product }: DetailsProps) {
     priceOriginal,
     rating,
   } = product;
+
+  const { addToCart } = useCart();
 
   const ProductInfo = () => (
     <>
@@ -61,7 +64,12 @@ export default function Details({ product }: DetailsProps) {
           <ProductInfo />
         </MidCardTop>
         <MidCardBottom>
-          <CardPrice key={id} price={price} priceOriginal={priceOriginal} />
+          <CardPrice
+            key={id}
+            price={price}
+            priceOriginal={priceOriginal}
+            product={product}
+          />
         </MidCardBottom>
         <BottomCard>
           <ProductDescription />

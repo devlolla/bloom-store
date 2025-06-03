@@ -19,6 +19,8 @@ export const Card = styled.div<CardProps>`
   border-radius: 8px;
   margin-bottom: 21px;
 
+  cursor: pointer;
+
   .box-image {
     padding: 14px;
     width: 100%;

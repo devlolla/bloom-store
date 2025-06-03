@@ -20,6 +20,8 @@ export default function CatalogComponent({
     }
   };
 
+  console.log('filteredProducts:', filteredProducts)
+
   return (
     <ContainerMain>
       {returnCarousel()}

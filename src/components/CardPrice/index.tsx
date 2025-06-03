@@ -1,3 +1,5 @@
+import { useCart } from '../../context/CartContext';
+import type { CartItem } from '../../types';
 import { brlFormatter } from '../../utils/currencyFormat';
 import { BuyButton, ContainerCardPrice, DiscountTag } from './styled';
 import { FaCartShopping } from 'react-icons/fa6';
@@ -5,9 +7,13 @@ import { FaCartShopping } from 'react-icons/fa6';
 type CardPrice = {
   price: number;
   priceOriginal: number;
+  product: CartItem
 };
 
-export default function CardPrice({ price, priceOriginal }: CardPrice) {
+export default function CardPrice({ price, priceOriginal, product }: CardPrice) {
+
+  const {addToCart} = useCart()
+
   return (
     <ContainerCardPrice>
       <DiscountTag> 10% OFF </DiscountTag>
@@ -17,7 +23,7 @@ export default function CardPrice({ price, priceOriginal }: CardPrice) {
       <div className="wrapper-to">
         <strong>POR:</strong> <span>{brlFormatter.format(price)}</span>
       </div>
-      <BuyButton>
+      <BuyButton onClick={() => addToCart(product)}>
         <FaCartShopping size={20} />
         COMPRAR
       </BuyButton>

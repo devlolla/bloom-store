@@ -22,10 +22,11 @@ export default function HomePage() {
   const fetchProducts = async () => {
     try {
       const data = await getAllProducts();
-      
-      const discountApplied = applyDiscount(data, "men's clothing", 10)
-      
-      setAllProducts(discountApplied);
+      const discountApplied = applyDiscount(data, "men's clothing", 10);
+      const discountAppliedFiltered = discountApplied.filter(
+        product => product.category !== "men's clothing"
+      );
+      setAllProducts(discountAppliedFiltered);
       setCarouselProducts(discountApplied);
     } catch (err) {
       console.log('Erro ao buscar produtos');
@@ -36,6 +37,10 @@ export default function HomePage() {
     fetchProducts();
   }, []);
 
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filteredProducts]);
+
   return (
     <>
       <Header
@@ -43,6 +48,7 @@ export default function HomePage() {
         setFilteredProducts={setFilteredProducts}
         hideSearchInput={false}
       />
+
       <Filters
         layout={layout}
         setLayout={setLayout}

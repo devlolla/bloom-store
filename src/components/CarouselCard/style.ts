@@ -22,6 +22,7 @@ export const ContainerCard = styled.div`
 export const WrapperContent = styled.div`
   display: flex;
   align-items: center;
+  cursor: pointer;
 
   .box-image {
     display: flex;

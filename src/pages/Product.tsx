@@ -5,7 +5,7 @@ import { getSingleProduct } from '../services/productsApi';
 import { useParams } from 'react-router-dom';
 import type { ProductProps } from '../types';
 import Details from '../components/Details';
-import { applyDiscount, applyDiscountToProduct } from '../utils/discount';
+import { applyDiscountToProduct } from '../utils/discount';
 
 export default function ProductPage() {
   const [product, setProduct] = useState<ProductProps | undefined>();
@@ -22,8 +22,6 @@ export default function ProductPage() {
       const appliedDiscountProduct = applyDiscountToProduct(data, "men's clothing", 10)
       setProduct(appliedDiscountProduct);
     } catch (err) {
-      console.log(err);
-      
       console.log('Erro ao buscar produtos');
     }
   };
@@ -39,7 +37,7 @@ export default function ProductPage() {
         <h2>{product?.title}</h2>
       </Title>
       <ContainerMain>
-        {product && <Details product={product} />}
+        {product && <Details product={{ ...product, quantity: 1 }} />}
       </ContainerMain>
     </div>
   );

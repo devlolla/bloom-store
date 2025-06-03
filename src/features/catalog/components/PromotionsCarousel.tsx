@@ -21,11 +21,8 @@ export default function PromotionsCarousel({
     return productsOnSale.map(item => (
       <CarouselCard
         key={item.id}
-        id={item.id}
-        price={item.price}
-        image={item.image}
+        product={item}
         discountValue={10}
-        priceOriginal={item.priceOriginal}
       />
     ));
   };
@@ -34,7 +31,9 @@ export default function PromotionsCarousel({
     <ContainerCarousel>
       <h3 className="title"> {title} </h3>
       <div className="wrapper-clothing">
-        <div className="box">{returnCarouselContent()}</div>
+        <div className="box">
+          {returnCarouselContent()}
+          </div>
       </div>
     </ContainerCarousel>
   );

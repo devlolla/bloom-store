@@ -84,3 +84,20 @@ export const ContainerListing = styled.div<ContainerListingProps>`
     gap: ${({ layout }) => layout === 'grid' && '8px'};
   }
 `;
+
+export const CarouselWrapper = styled.div`
+  overflow-x: auto;
+  display: flex;
+  gap: 16px;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 8px;
+
+  &::-webkit-scrollbar {
+    height: 8px;
+  }
+`;
+
+export const CarouselBox = styled.div`
+  display: flex;
+  gap: 16px;
+`;

@@ -21,7 +21,7 @@ export const ContainerHeader = styled.div`
     order: 2;
   }
 
-  svg {
+  button {
     order: 3;
   }
 
@@ -32,7 +32,7 @@ export const ContainerHeader = styled.div`
     > div {
       order: 3;
     }
-    > svg {
+    > button {
       order: 2;
     }
     > h1 {
@@ -48,5 +48,26 @@ export const Logo = styled.h1`
 
   @media (max-width: 425px) {
     font-size: 1.75rem;
+  }
+`;
+
+export const ButtonCart = styled.button`
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+
+  .indication-value {
+    width: 18px;
+    height: 18px;
+    border-radius: 8px;
+
+    background-color: #da0505;
+    color: #fff;
+    position: absolute;
+    left: -5px;
+    bottom: -9px;
   }
 `;

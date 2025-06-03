@@ -25,7 +25,7 @@ export default function SearchInput ({
         name={name} 
         id={id} 
         placeholder={placeholder}
-        onChange={e => onChange(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
       />
     </ContainerInput>
   )

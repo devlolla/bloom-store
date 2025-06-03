@@ -11,7 +11,7 @@ type RatingReadOnlyProps = {
 export default function RatingReadOnly({
   value,
   size = 20,
-  color = '#FFD700',
+  color = '#CFC248',
   count,
 }: RatingReadOnlyProps) {
   const fullStars = Math.floor(value);

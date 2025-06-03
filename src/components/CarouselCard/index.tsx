@@ -6,23 +6,17 @@ import {
   ContainerCard,
   WrapperContent,
 } from './style';
+import type { ProductProps } from '../../types';
+import { useCart } from '../../context/CartContext';
 
-type CardProps = {
-  id: number;
-  image: string;
-  priceOriginal: number;
-  price: number;
-  discountValue: number;
-};
+type CarouselCardProps = {
+  product: ProductProps,
+  discountValue: number,
+}
 
-export default function CarouselCard({
-  id,
-  image,
-  priceOriginal,
-  price,
-  discountValue,
-}: CardProps) {
+export default function CarouselCard({product, discountValue}: CarouselCardProps) {
   const navigate = useNavigate();
+  const { addToCart } = useCart();
 
   const handleBuyItem = (idProduct: number) => {
     navigate(`/produto/${idProduct}`);
@@ -30,9 +24,9 @@ export default function CarouselCard({
 
   return (
     <ContainerCard>
-      <WrapperContent>
+      <WrapperContent onClick={() => handleBuyItem(product.id)}>
         <div className="box-image">
-          <img src={image} alt="" />
+          <img src={product.image} alt="" />
         </div>
         <BuyInformation>
           <div className="discount-tag">
@@ -42,16 +36,16 @@ export default function CarouselCard({
             <div className="price-item">
               <strong>DE:</strong>{' '}
               <p style={{ textDecoration: 'line-through' }}>
-                {brlFormatter.format(price)}
+                {brlFormatter.format(product.price)}
               </p>
             </div>
             <div className="price-item">
-              <strong>POR:</strong> <p>{brlFormatter.format(priceOriginal)}</p>
+              <strong>POR:</strong> <p>{brlFormatter.format(product.priceOriginal)}</p>
             </div>
           </div>
         </BuyInformation>
       </WrapperContent>
-      <CatalogBuyButton onClick={() => handleBuyItem(id)}>
+      <CatalogBuyButton onClick={() => addToCart(product)}>
         COMPRAR
       </CatalogBuyButton>
     </ContainerCard>
