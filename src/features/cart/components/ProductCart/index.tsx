@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import type { CartItem } from '../../../../types';
 import { brlFormatter } from '../../../../utils/currencyFormat';
 import { ContainerProductCard, DiscountTag } from './style';
@@ -14,10 +14,11 @@ export default function ProductCart({
   category,
 }: CartItem) {
   const { updateQuantity, removeFromCart } = useCart();
+  const [inputValue, setInputValue] = useState(quantity.toString());
 
   const returnSectionPrice = (title: string, value: number) => {
     const isOriginalPrice = title === 'DE';
-
+    
     return (
       <div className="item">
         <strong>{title}:</strong>{' '}
@@ -32,11 +33,25 @@ export default function ProductCart({
     );
   };
 
+  const handleBlur = () => {
+    const parsed = Number(inputValue);
+
+    if (inputValue === '') {
+      setInputValue(quantity.toString());
+      return;
+    }
+
+    if (parsed === 0) {
+      removeFromCart(id);
+    } else if (!isNaN(parsed) && parsed >= 1) {
+      updateQuantity(id, parsed);
+    }
+  };
+
   return (
     <ContainerProductCard>
       <div className="box-image">
         {category === `men's clothing` && <DiscountTag> 10% OFF</DiscountTag>}
-
         <img src={image} alt="" />
       </div>
       <div className="column">
@@ -60,16 +75,10 @@ export default function ProductCart({
               <strong>QTDE:</strong>{' '}
               <input
                 type="number"
-                value={quantity}
-                onChange={e => {
-                  const newQuantity = Number(e.target.value);
-                  if (newQuantity === 0) {
-                    removeFromCart(id);
-                  }
-                  if (newQuantity >= 1) {
-                    updateQuantity(id, newQuantity);
-                  }
-                }}
+                min={0}
+                value={inputValue}
+                onChange={e => setInputValue(e.target.value)}
+                onBlur={handleBlur}
               />
             </div>
             {returnSectionPrice('Total', priceOriginal * quantity)}

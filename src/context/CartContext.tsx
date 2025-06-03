@@ -7,13 +7,16 @@ const CartContext = createContext({} as CartContextType);
 export const useCart = () => useContext(CartContext);
 
 type CartProviderProps = {
+  children: ReactNode,
   setVisibleCart: React.Dispatch<React.SetStateAction<boolean>>,
-  children: ReactNode
+
 }
 
-export const CartProvider = ({ setVisibleCart, children }: CartProviderProps) => {
+export const CartProvider = ({ setVisibleCart,  children }: CartProviderProps) => {
   const [cart, setCart] = useState<CartItem[]>([]);
+  const [hideSearchInput, setHideSearchInput] = useState(false)
 
+  
   const addToCart = (product: ProductProps) => {
     setCart(prev =>
       prev.some(item => item.id === product.id)
@@ -42,7 +45,7 @@ export const CartProvider = ({ setVisibleCart, children }: CartProviderProps) =>
   const clearCart = () => setCart([]);
 
   const total = cart.reduce((acc, item) => {
-    const priceToUse = item.price ?? 0; // sempre usa o preço final (com desconto se houver)
+    const priceToUse = item.price ?? 0;
     return acc + priceToUse * item.quantity;
   }, 0);
 
@@ -59,7 +62,9 @@ export const CartProvider = ({ setVisibleCart, children }: CartProviderProps) =>
         clearCart,
         total,
         setVisibleCart,
-        totalItems
+        totalItems,
+        hideSearchInput, 
+        setHideSearchInput
       }}
     >
       {children}

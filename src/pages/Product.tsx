@@ -6,9 +6,11 @@ import { useParams } from 'react-router-dom';
 import type { ProductProps } from '../types';
 import Details from '../components/Details';
 import { applyDiscountToProduct } from '../utils/discount';
+import { useBaseContext } from '../context/BaseContext';
 
 export default function ProductPage() {
   const [product, setProduct] = useState<ProductProps | undefined>();
+  const {setHideSearchInput} = useBaseContext()
 
   const { id } = useParams();
 
@@ -27,6 +29,7 @@ export default function ProductPage() {
   };
 
   useEffect(() => {
+    setHideSearchInput(true)
     fetchProducts();
   }, []);
 

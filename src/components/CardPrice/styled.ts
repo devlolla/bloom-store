@@ -10,6 +10,7 @@ export const ContainerCardPrice = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: flex-end;
 
   padding: 23px 37px;
   position: relative;
@@ -185,5 +186,32 @@ export const BuyButton = styled.button`
 
   @media (max-width: 375px) {
     padding: 10px;
+  }
+`;
+
+export const NoDiscount = styled.div`
+  display: flex;
+  flex-direction: column;
+  > span {
+    font-size: 24px;
+  }
+
+  > strong {
+    font-size: 96px;
+    line-height: 100px;
+  }
+
+  @media (max-width: 425px) {
+    > strong {
+      font-size: 80px;
+      line-height: 70px;
+    }
+  }
+
+  @media (max-width: 375px) {
+    > strong {
+      font-size: 50px;
+      line-height: 60px;
+    }
   }
 `;

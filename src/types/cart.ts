@@ -13,4 +13,6 @@ export type CartContextType = {
   total: number;
   totalItems: number;
   setVisibleCart: React.Dispatch<React.SetStateAction<boolean>>;
+  hideSearchInput: boolean;
+  setHideSearchInput: (hideSearchInput: boolean) => void;
 };

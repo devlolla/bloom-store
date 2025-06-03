@@ -7,6 +7,7 @@ import { getAllProducts } from '../services/productsApi';
 import Pagination from '../components/Pagination/Pagination';
 import paginatedProducts from '../utils/sliceProducts';
 import { applyDiscount } from '../utils/discount';
+import { useBaseContext } from '../context/BaseContext';
 
 export default function HomePage() {
   const [allProducts, setAllProducts] = useState<ProductProps[]>([]);
@@ -18,6 +19,8 @@ export default function HomePage() {
 
   const [limit, setLimit] = useState<number>(5);
   const [currentPage, setCurrentPage] = useState(1);
+
+  const {setHideSearchInput} = useBaseContext()
 
   const fetchProducts = async () => {
     try {
@@ -34,6 +37,7 @@ export default function HomePage() {
   };
 
   useEffect(() => {
+    setHideSearchInput(false)
     fetchProducts();
   }, []);
 

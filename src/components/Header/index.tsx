@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { ProductProps } from '../../types';
 import SearchInput from '../SearchInput';
 import { ButtonCart, ContainerHeader, Logo } from './style';
@@ -17,12 +17,13 @@ export default function Header({
   setFilteredProducts,
   hideSearchInput,
 }: HeaderProps) {
-  const [search, setSearch] = useState<string>('');
+ 
   const { setVisibleCart, totalItems } = useCart();
+  
+  const [search, setSearch] = useState<string>('');
+  const headerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    console.log(search.trim() === '');
-
     if (search.trim() === '') {
       setFilteredProducts && setFilteredProducts(allProducts ?? []);
     } else {
@@ -35,7 +36,7 @@ export default function Header({
   }, [search, allProducts]);
 
   return (
-    <ContainerHeader>
+    <ContainerHeader ref={headerRef}>
       <Link to="/">
         <Logo>Bloom Store</Logo>
       </Link>

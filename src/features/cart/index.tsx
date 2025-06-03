@@ -11,9 +11,10 @@ type CartComponentProps = {
   price?: number;
   originalPrice?: number;
   visible: boolean;
+  hideSearchInput: boolean;
 };
 
-export default function CartComponent({ visible }: CartComponentProps) {
+export default function CartComponent({ visible, hideSearchInput }: CartComponentProps) {
   const { cart, total, clearCart, totalItems, setVisibleCart } = useCart();
 
   useEffect(() => {
@@ -26,22 +27,25 @@ export default function CartComponent({ visible }: CartComponentProps) {
   }, [visible]);
 
   return (
-    <ContainerCart visible={visible}>
+    <ContainerCart visible={visible} ajustHeight={hideSearchInput}>
       <Content>
         <ContainerCard>
+          <h3 className="title">Carrinho</h3>
           {cart.map((productCart: CartItem) => (
             <ProductCart {...productCart} quantity={productCart.quantity} />
           ))}
         </ContainerCard>
         <Total alignItems={!!totalItems}>
-          {
-            totalItems > 0 && (
-              <button onClick={() => {
-                clearCart()
-                setVisibleCart(false)
-              }}>Limpar carrinho</button>
-            )
-          }
+          {totalItems > 0 && (
+            <button
+              onClick={() => {
+                clearCart();
+                setVisibleCart(false);
+              }}
+            >
+              Limpar carrinho
+            </button>
+          )}
           <div>
             <strong>Total:</strong> <span>{brlFormatter.format(total)}</span>
           </div>

@@ -2,15 +2,15 @@ import styled from 'styled-components';
 
 interface ContainerCartProps {
   visible: boolean;
+  ajustHeight: boolean;
 }
 
 export const ContainerCart = styled.div<ContainerCartProps>`
   width: 100%;
-  height: calc(100% - 73px);
   background-color: rgba(0, 0, 0, 0.45);
 
   position: fixed;
-  bottom: 0;
+
   ${props => (props.visible ? `display: flex;` : `display: none;`)}
 
   align-items: flex-end;
@@ -18,8 +18,11 @@ export const ContainerCart = styled.div<ContainerCartProps>`
   z-index: 2;
   overflow: hidden;
 
-  @media (max-width: 857px) {
-    height: calc(100% - 116px);
+  top: 73px;
+  bottom: 0;
+
+  @media (max-width: 850px) {
+    top: ${({ ajustHeight }) => (ajustHeight ? '73px' : '116px')};
   }
 `;
 
@@ -52,6 +55,13 @@ export const ContainerCard = styled.div`
   }
   &::-webkit-scrollbar-thumb {
     background: #dad7d7;
+  }
+
+  .title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #0b1a8e;
+    margin-bottom: 10px;
   }
 `;
 

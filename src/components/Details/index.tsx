@@ -28,8 +28,6 @@ export default function Details({ product }: DetailsProps) {
     rating,
   } = product;
 
-  const { addToCart } = useCart();
-
   const ProductInfo = () => (
     <>
       <div className="box">
