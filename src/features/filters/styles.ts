@@ -19,6 +19,7 @@ export const StyledSelect = styled.select`
   border: none;
   border-radius: 5px;
   background-color: transparent;
+
   color: #333;
   font-size: 16px;
   font-family: 'Lato', sans-serif;
@@ -32,8 +33,10 @@ export const StyledSelect = styled.select`
 
 export const ContainerIcons = styled.div`
   height: 100%;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   gap: 8px;
 `;

@@ -4,11 +4,10 @@ export const ContainerCard = styled.div`
   width: 100%;
   max-width: 231px;
   height: 160px;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  /* border: 1px solid red; */
 
   padding: 10px 5px;
 

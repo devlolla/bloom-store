@@ -3,30 +3,35 @@ import styled from 'styled-components';
 export const ContainerProductCard = styled.div`
   width: 100%;
 
-  box-shadow: 0px 4px 4px 0px #00000040;
-  font-family: 'Lato', sans-serif;
-  padding: 16px;
-  border-radius: 8px;
   display: flex;
 
+  font-family: 'Lato', sans-serif;
+  border-radius: 8px;
+  box-shadow: 0px 4px 4px 0px #00000040;
+
+  padding: 16px;
+
   .column {
+    width: 100%;
+    height: 100%;
+
     display: flex;
     flex-direction: column;
-    width: 100%;
+
     margin-left: 8px;
-    height: 100%;
   }
 
   .box-image {
-    border: 1px solid #0b1a8e;
-    padding: 6px 17px;
     max-width: 160px;
     height: 108px;
-    border-radius: 10px;
 
     display: flex;
     align-items: center;
     justify-content: center;
+
+    border: 1px solid #0b1a8e;
+    padding: 6px 17px;
+    border-radius: 10px;
 
     position: relative;
 
@@ -41,6 +46,7 @@ export const ContainerProductCard = styled.div`
 
   .box-title {
     height: 50%;
+
     h3 {
       max-height: 50px;
       font-size: 13px;
@@ -58,11 +64,12 @@ export const ContainerProductCard = styled.div`
   }
 
   .wrapper {
+    height: 100%;
+
     display: flex;
     align-items: flex-end;
     justify-content: flex-end;
     flex-direction: column;
-    height: 100%;
   }
 
   .item {
@@ -77,6 +84,7 @@ export const ContainerProductCard = styled.div`
     input {
       width: 45px;
       height: 20px;
+
       background-color: #d9d9d9;
       border-radius: 4px;
       border: none;

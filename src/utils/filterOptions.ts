@@ -1,4 +1,3 @@
-// import { HiViewList } from 'react-icons/hi';
 import { IoGridSharp } from 'react-icons/io5';
 import { HiOutlineViewList } from 'react-icons/hi';
 

@@ -68,17 +68,16 @@ interface ContainerListingProps {
 }
 
 export const ContainerListing = styled.div<ContainerListingProps>`
-  display: flex;
-  flex-direction: ${({ layout }) => (layout === 'listing' ? 'column' : 'row')};
-
-  flex-wrap: ${({ layout }) => (layout === 'listing' ? 'unset' : 'wrap')};
-  margin-top: 80px;
   width: 100%;
-  justify-content: ${({ layout }) => layout === 'grid' && 'space-evenly'};
-  gap: ${({ layout }) => layout === 'grid' && '21px'};
   max-width: ${({ layout }) => (layout === 'listing' ? '1050px' : '100%')};
-  margin: 60px auto;
-  margin-bottom: 30px;
+
+  display: flex;
+  justify-content: ${({ layout }) => layout === 'grid' && 'space-evenly'};
+  flex-direction: ${({ layout }) => (layout === 'listing' ? 'column' : 'row')};
+  flex-wrap: ${({ layout }) => (layout === 'listing' ? 'unset' : 'wrap')};
+
+  gap: ${({ layout }) => layout === 'grid' && '21px'};
+  margin: 80px 60px 30px 60px;
 
   @media (max-width: 768px) {
     gap: ${({ layout }) => layout === 'grid' && '8px'};

@@ -8,15 +8,15 @@ export const Card = styled.div<CardProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: ${({ layout }) => layout === 'grid' && 'column'};
 
   background-color: #fff;
   box-shadow: 0px 5px 10px 0px #00000040;
-  /* width:  */
+  border-radius: 8px;
+
   width: 100%;
   max-width: ${({ layout }) => (layout === 'listing' ? '100%' : '371px')};
-  flex-direction: ${({ layout }) => layout === 'grid' && 'column'};
   height: ${({ layout }) => (layout === 'listing' ? '176px' : '317px')};
-  border-radius: 8px;
   margin-bottom: 21px;
 
   cursor: pointer;
@@ -72,8 +72,8 @@ export const Card = styled.div<CardProps>`
       -webkit-box-orient: vertical;
       overflow: hidden;
       text-overflow: ellipsis;
-      /* NÃO use white-space: nowrap */
-      width: 100%; /* ou max-width definida */
+
+      width: 100%;
       height: 50px;
     }
   }
@@ -94,12 +94,15 @@ export const Information = styled.div<CardProps>`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  font-family: 'Lato', sans-serif;
+
   height: 100%;
+
+  font-family: 'Lato', sans-serif;
 
   .description {
     font-size: 12px;
     font-weight: 700;
+
     width: 100%;
     max-width: 600px;
   }
@@ -132,6 +135,7 @@ export const BuyInformation = styled.div<CardProps>`
     font-size: 36px;
     font-weight: 400;
     text-align: ${({ layout }) => layout === 'grid' && 'end'};
+
     margin-top: ${({ layout }) => layout === 'grid' && 'auto'};
   }
 
@@ -154,9 +158,11 @@ export const BuyButton = styled.button<CardProps>`
   width: 100%;
   height: ${({ layout }) => (layout === 'grid' ? '49px' : '100%')};
   max-width: ${({ layout }) => (layout === 'grid' ? '100%' : '49px')};
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   background-color: #0b1a8e;
 
   @media (max-width: 768px) {

@@ -104,14 +104,15 @@ export const EmptyCart = styled.div`
   justify-content: center;
 
   div {
-    border: 1px solid rgb(59, 68, 143);
-    padding: 20px;
-    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     gap: 20px;
+
+    border: 1px solid rgb(59, 68, 143);
+    padding: 20px;
+    border-radius: 10px;
   }
 
   strong {

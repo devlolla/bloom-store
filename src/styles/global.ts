@@ -7,7 +7,6 @@ interface GlobalStyleProps {
 }
 
 const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
-  /* Reset CSS */
   *, *::before, *::after {
     margin: 0;
     padding: 0;
@@ -31,11 +30,11 @@ const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
   }
 
   h1 {
-    font-size: 2rem; /* Equivale a 32px */
+    font-size: 2rem;
   }
 
   p {
-    font-size: 1rem; /* Equivale a 16px */
+    font-size: 1rem;
   }
 
   a {
