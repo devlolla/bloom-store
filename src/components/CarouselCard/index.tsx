@@ -36,11 +36,11 @@ export default function CarouselCard({product, discountValue}: CarouselCardProps
             <div className="price-item">
               <strong>DE:</strong>{' '}
               <p style={{ textDecoration: 'line-through' }}>
-                {brlFormatter.format(product.price)}
+                {brlFormatter.format(product.priceOriginal)}
               </p>
             </div>
             <div className="price-item">
-              <strong>POR:</strong> <p>{brlFormatter.format(product.priceOriginal)}</p>
+              <strong>POR:</strong> <p>{brlFormatter.format(product.price)}</p>
             </div>
           </div>
         </BuyInformation>
